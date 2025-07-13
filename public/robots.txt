@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://samueldervishi.com/sitemap-index.xml

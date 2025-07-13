@@ -1,0 +1,135 @@
+[
+    {
+        "id": "marymount",
+        "title": "Career Crush",
+        "details": {
+            "description": "Web app to find jobs",
+            "summary": "Job Search Application"
+        },
+        "date": "Sep 19, 2023",
+        "roles": [
+            "Full-Stack Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/taleas-project-backend"
+            }
+        ]
+    },
+    {
+        "id": "lcml",
+        "title": "Portfolio",
+        "details": {
+            "description": "Personal portfolio website built with modern web technologies",
+            "summary": "Personal Portfolio"
+        },
+        "date": "Oct 1, 2024",
+        "roles": [
+            "Front-End Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/portfolio"
+            }
+        ]
+    },
+    {
+        "id": "v1",
+        "title": "Quote API",
+        "details": {
+            "description": "RESTful API service for delivering inspirational quotes",
+            "summary": "API Service"
+        },
+        "date": "Feb 19, 2025",
+        "roles": [
+            "Backend Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/quote-api"
+            }
+        ]
+    },
+    {
+        "id": "grillzzy",
+        "title": "Chattr",
+        "details": {
+            "description": "Social Media App",
+            "summary": "Social Media Application"
+        },
+        "date": "Nov 13, 2024",
+        "roles": [
+            "Full-Stack Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/social-media-app"
+            }
+        ]
+    },
+    {
+        "id": "kic",
+        "title": "Stack Block",
+        "details": {
+            "description": "JavaScript stack game",
+            "summary": "Browser Game"
+        },
+        "date": "Sep 18, 2024",
+        "roles": [
+            "Game Developer"
+        ],
+        "links": [
+            {
+                "type": "web",
+                "text": "Play Game",
+                "link": "https://stack-quest.vercel.app/"
+            }
+        ]
+    },
+    {
+        "id": "v1",
+        "title": "Story AI",
+        "details": {
+            "description": "AI-powered story generation application",
+            "summary": "AI Application"
+        },
+        "date": "Apr 9, 2025",
+        "roles": [
+            "Front-End Developer"
+        ],
+        "links": [
+            {
+                "type": "web",
+                "text": "Visit Site",
+                "link": "https://story-ai-kappa.vercel.app/"
+            }
+        ]
+    },
+    {
+        "id": "grillzzy",
+        "title": "Web Scrapper",
+        "details": {
+            "description": "Python-based web scraping tool for data extraction",
+            "summary": "Data Extraction Tool"
+        },
+        "date": "Dec 6, 2024",
+        "roles": [
+            "Python Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/web-scraper"
+            }
+        ]
+    }
+]
