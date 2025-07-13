@@ -1,12 +1,12 @@
 [
-    {
-        "id": "marymount",
-        "title": "Career Crush",
+     {
+        "id": "grillzzy",
+        "title": "Chattr",
         "details": {
-            "description": "Web app to find jobs",
-            "summary": "Job Search Application"
+            "description": "Social Media App",
+            "summary": "Social Media Application"
         },
-        "date": "Sep 19, 2023",
+        "date": "Nov 13, 2024",
         "roles": [
             "Full-Stack Developer"
         ],
@@ -14,7 +14,7 @@
             {
                 "type": "github",
                 "text": "View on GitHub",
-                "link": "https://github.com/samueldervishi1/taleas-project-backend"
+                "link": "https://github.com/samueldervishi1/social-media-app"
             }
         ]
     },
@@ -53,25 +53,6 @@
                 "type": "github",
                 "text": "View on GitHub",
                 "link": "https://github.com/samueldervishi1/quote-api"
-            }
-        ]
-    },
-    {
-        "id": "grillzzy",
-        "title": "Chattr",
-        "details": {
-            "description": "Social Media App",
-            "summary": "Social Media Application"
-        },
-        "date": "Nov 13, 2024",
-        "roles": [
-            "Full-Stack Developer"
-        ],
-        "links": [
-            {
-                "type": "github",
-                "text": "View on GitHub",
-                "link": "https://github.com/samueldervishi1/social-media-app"
             }
         ]
     },
@@ -129,6 +110,25 @@
                 "type": "github",
                 "text": "View on GitHub",
                 "link": "https://github.com/samueldervishi1/web-scraper"
+            }
+        ]
+    },
+    {
+        "id": "marymount",
+        "title": "Career Crush",
+        "details": {
+            "description": "Web app to find jobs",
+            "summary": "Job Search Application"
+        },
+        "date": "Sep 19, 2023",
+        "roles": [
+            "Full-Stack Developer"
+        ],
+        "links": [
+            {
+                "type": "github",
+                "text": "View on GitHub",
+                "link": "https://github.com/samueldervishi1/taleas-project-backend"
             }
         ]
     }
