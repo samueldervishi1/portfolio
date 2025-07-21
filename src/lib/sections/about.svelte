@@ -118,6 +118,8 @@
 				<div class="flex-item" in:maskSlideIn={{ delay: 800 }}>
 					<img src="assets/imgs/svg-icons/oracle-icon.svg" alt="Oracle">
 					<img src="assets/imgs/svg-icons/mongodb-icon.svg" alt="MongoDB">
+					<img src="assets/imgs/svg-icons/mysql-icon.svg" alt="MySQL">
+					<img src="assets/imgs/svg-icons/postgresql-icon.svg" alt="PostgreSQL">
 				</div>
 			</li>
 			<li>
