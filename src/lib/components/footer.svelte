@@ -60,9 +60,6 @@
                 <img src="assets/imgs/logo.svg" alt="sd logo" class="logo">
             </div>
         </div>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/samueldervishi" target="_blank" class="button">LinkedIn</a>
-        </div>
     </div>
 </div>
 

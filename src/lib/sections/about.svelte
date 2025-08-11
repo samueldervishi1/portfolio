@@ -64,9 +64,12 @@
 				<div in:maskSlideIn={{ delay: 700, reverse: true }}>
 					<span class="button"><a href="https://github.com/samueldervishi1" target="_blank" class="clickable sublink link">Github</a></span>
 				</div>
+				<div in:maskSlideIn={{ delay: 700, reverse: true }}>
+					<span class="button"><a href="https://linkedin.com/in/samueldervishi" target="_blank" class="clickable sublink link">LinkedIn</a></span>
+				</div>
 			</div>
 		</div>
-		<div class="profile-image" use:addSlickScrollOffset>
+		<!-- <div class="profile-image" use:addSlickScrollOffset>
 			{#await loadImage("assets/imgs/me.jpeg") then src}
 				<img src="{src}" in:maskSlideIn={{ duration: 1200,
 					delay: 100,
@@ -77,7 +80,7 @@
 					]
 				}} alt="Musab's Profile" class="profile-pic">
 			{/await}
-		</div>
+		</div> -->
 	{/await}
 </div>
 
