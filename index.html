@@ -33,8 +33,13 @@
               href="https://github.com/samueldervishii/europa-fastagent"
               target="_blank"
               rel="noopener noreferrer"
+              data-repo="samueldervishii/europa-fastagent"
               >europa-fastagent</a
             >
+            <span
+              class="last-updated"
+              data-repo="samueldervishii/europa-fastagent"
+            ></span>
             - A high-performance AI automation platform powered by Google Gemini
             2.0 Flash Experimental with intelligent MCP server coordination for
             seamless task automation
@@ -44,12 +49,68 @@
               href="https://github.com/samueldervishii/sage-cli"
               target="_blank"
               rel="noopener noreferrer"
+              data-repo="samueldervishii/sage-cli"
               >sage-cli</a
             >
+            <span
+              class="last-updated"
+              data-repo="samueldervishii/sage-cli"
+            ></span>
             - Interactive CLI tool for generating mock servers and APIs
+          </li>
+          <li>
+            <a
+              href="https://github.com/samueldervishii/llm-token-toolkit"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-repo="samueldervishii/llm-token-toolkit"
+              >llm-token-toolkit</a
+            >
+            <span
+              class="last-updated"
+              data-repo="samueldervishii/llm-token-toolkit"
+            ></span>
+            - A Python toolkit for analyzing, optimizing, and understanding
+            tokenization across AI models, including OpenAI's GPT and
+            Anthropic's Claude.
           </li>
         </ul>
       </section>
     </div>
+    <script>
+      async function fetchLastUpdated() {
+        const repoElements = document.querySelectorAll(
+          ".last-updated[data-repo]"
+        );
+
+        for (const element of repoElements) {
+          const repo = element.getAttribute("data-repo");
+          try {
+            const response = await fetch(
+              `https://api.github.com/repos/${repo}`
+            );
+            const data = await response.json();
+
+            if (data.updated_at) {
+              const updatedDate = new Date(data.updated_at);
+              const formattedDate = updatedDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
+              const formattedTime = updatedDate.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+
+              element.textContent = `(updated ${formattedDate} at ${formattedTime})`;
+            }
+          } catch (error) {
+            console.error(`Error fetching data for ${repo}:`, error);
+          }
+        }
+      }
+      document.addEventListener("DOMContentLoaded", fetchLastUpdated);
+    </script>
   </body>
 </html>
