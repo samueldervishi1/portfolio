@@ -3,149 +3,110 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>samuel*</title>
-    <link rel="icon" type="image/jpeg" href="logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <title>Samuel Dervishi - Portfolio</title>
+    <meta name="description" content="Software Engineer specializing in backend architecture and scalable solutions" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                '"Segoe UI"',
+                "SegoeUI",
+                '"Helvetica Neue"',
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ],
+              mono: ["Consolas", '"Lucida Console"', "monospace"],
+            },
+            colors: {
+              win: {
+                blue: "#0078D7",
+                "blue-hover": "#0063B1",
+                dark: "#1F1F1F",
+                gray: "#F0F0F0",
+                taskbar: "rgba(31, 31, 31, 0.95)",
+                hover: "rgba(255, 255, 255, 0.1)",
+                selection: "rgba(0, 120, 212, 0.2)",
+              },
+            },
+            cursor: {
+              default: "default",
+              pointer: "pointer",
+              text: "text",
+            },
+            boxShadow: {
+              win: "0 0 10px rgba(0,0,0,0.2), 0 0 2px rgba(0,0,0,0.1)",
+              "win-active": "0 0 20px rgba(0,0,0,0.3), 0 0 4px rgba(0,0,0,0.1)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: "Segoe UI", sans-serif;
+        user-select: none;
+        /* Dark Night Landscape Wallpaper */
+        background: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop")
+          no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      /* Win 10 Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(100, 100, 100, 0.4);
+        border: 3px solid transparent;
+        background-clip: content-box;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(100, 100, 100, 0.7);
+      }
+
+      .glass {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      /* Selection Color */
+      ::selection {
+        background: rgba(0, 120, 212, 0.4);
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>samuel*</h1>
-        <p class="bio">
-          Java Developer specializing in backend architecture and scalable
-          solutions. I enjoy basketball, movies, and building things that solve
-          real problems. Based in Albania. More
-          <a href="about.html">about me</a>.
-        </p>
-      </header>
-
-      <section class="projects">
-        <h2>Projects</h2>
-        <ul>
-          <li>
-            <a
-              href="https://github.com/samueldervishii/europa-fastagent"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-repo="samueldervishii/europa-fastagent"
-              >europa-fastagent</a
-            >
-            <span
-              class="last-updated"
-              data-repo="samueldervishii/europa-fastagent"
-            ></span>
-            - A high-performance AI automation platform powered by Google Gemini
-            2.0 Flash Experimental with intelligent MCP server coordination for
-            seamless task automation
-          </li>
-          <li>
-            <a
-              href="https://github.com/samueldervishii/sage-cli"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-repo="samueldervishii/sage-cli"
-              >sage-cli</a
-            >
-            <span
-              class="last-updated"
-              data-repo="samueldervishii/sage-cli"
-            ></span>
-            - An intelligent command-line AI assistant powered by Google Gemini with memory, file operations, and automatic fallback support.
-          </li>
-          <li>
-            <a
-              href="https://github.com/samueldervishii/llm-token-toolkit"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-repo="samueldervishii/llm-token-toolkit"
-              >llm-token-toolkit</a
-            >
-            <span
-              class="last-updated"
-              data-repo="samueldervishii/llm-token-toolkit"
-            ></span>
-            - A Python toolkit for analyzing, optimizing, and understanding
-            tokenization across AI models, including OpenAI's GPT and
-            Anthropic's Claude.
-          </li>
-          <li>
-            <a
-              href="https://github.com/samueldervishii/social-media-web"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-repo="samueldervishii/social-media-web"
-              >social-media-web</a
-            >
-            <span
-              class="last-updated"
-              data-repo="samueldervishii/social-media-web"
-            ></span>
-            - A basic social media platform where users can connect, follow each
-            other, and share posts. Work in progress with ongoing development to
-            add more features and enhance functionality.
-          </li>
-        </ul>
-      </section>
-    </div>
-    <script>
-      async function fetchLastUpdated() {
-        const projectsList = document.querySelector(".projects ul");
-        const listItems = Array.from(projectsList.querySelectorAll("li"));
-
-        const projectsWithDates = await Promise.all(
-          listItems.map(async (li) => {
-            const repoElement = li.querySelector("[data-repo]");
-            const repo = repoElement.getAttribute("data-repo");
-
-            try {
-              const response = await fetch(
-                `https://api.github.com/repos/${repo}`
-              );
-              const data = await response.json();
-
-              if (data.updated_at) {
-                const updatedDate = new Date(data.updated_at);
-                const formattedDate = updatedDate.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                });
-                const formattedTime = updatedDate.toLocaleTimeString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                });
-
-                const lastUpdatedSpan = li.querySelector(".last-updated");
-                lastUpdatedSpan.textContent = `(updated ${formattedDate} at ${formattedTime})`;
-
-                return {
-                  element: li,
-                  date: updatedDate,
-                };
-              }
-            } catch (error) {
-              console.error(`Error fetching data for ${repo}:`, error);
-            }
-
-            return {
-              element: li,
-              date: new Date(0),
-            };
-          })
-        );
-
-        projectsWithDates.sort((a, b) => b.date - a.date);
-        projectsWithDates.forEach(({ element }) => {
-          projectsList.appendChild(element);
-        });
-      }
-      document.addEventListener("DOMContentLoaded", fetchLastUpdated);
-    </script>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
