@@ -1,5 +1,17 @@
-import React from 'react';
-import { Wifi, WifiOff, Volume2, VolumeX, Calendar, ChevronLeft, ChevronRight, Bell, Settings, MessageSquare, Mail } from 'lucide-react';
+import React from "react";
+import {
+  Wifi,
+  WifiOff,
+  Volume2,
+  VolumeX,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Bell,
+  Settings,
+  MessageSquare,
+  Mail,
+} from "lucide-react";
 
 interface SystemTrayPanelProps {
   isOpen: boolean;
@@ -11,9 +23,9 @@ export const WiFiPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose }) =
   if (!isOpen) return null;
 
   const networks = [
-    { name: 'Home Network', strength: 'Excellent', connected: true, secured: true },
-    { name: 'Office WiFi', strength: 'Good', connected: false, secured: true },
-    { name: 'Guest Network', strength: 'Fair', connected: false, secured: false },
+    { name: "Home Network", strength: "Excellent", connected: true, secured: true },
+    { name: "Office WiFi", strength: "Good", connected: false, secured: true },
+    { name: "Guest Network", strength: "Fair", connected: false, secured: false },
   ];
 
   return (
@@ -37,15 +49,21 @@ export const WiFiPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose }) =
             <div
               key={idx}
               className={`p-3 rounded hover:bg-white/10 cursor-pointer transition-colors ${
-                network.connected ? 'bg-win-blue/20 border border-win-blue/50' : ''
+                network.connected ? "bg-win-blue/20 border border-win-blue/50" : ""
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {network.secured ? <Wifi size={16} /> : <WifiOff size={16} className="text-yellow-500" />}
+                  {network.secured ? (
+                    <Wifi size={16} />
+                  ) : (
+                    <WifiOff size={16} className="text-yellow-500" />
+                  )}
                   <div>
                     <div className="text-sm">{network.name}</div>
-                    <div className="text-xs text-gray-400">{network.strength} • {network.secured ? 'Secured' : 'Open'}</div>
+                    <div className="text-xs text-gray-400">
+                      {network.strength} • {network.secured ? "Secured" : "Open"}
+                    </div>
                   </div>
                 </div>
                 {network.connected && (
@@ -83,7 +101,11 @@ export const VolumePanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose })
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-700">
           <div className="flex items-center gap-3">
-            {isMuted ? <VolumeX size={20} className="text-red-400" /> : <Volume2 size={20} className="text-blue-400" />}
+            {isMuted ? (
+              <VolumeX size={20} className="text-red-400" />
+            ) : (
+              <Volume2 size={20} className="text-blue-400" />
+            )}
             <span className="font-medium">Volume Mixer</span>
           </div>
         </div>
@@ -110,7 +132,7 @@ export const VolumePanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose })
                 }}
                 className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
                 style={{
-                  background: `linear-gradient(to right, #0078D7 0%, #0078D7 ${isMuted ? 0 : volume}%, #4a5568 ${isMuted ? 0 : volume}%, #4a5568 100%)`
+                  background: `linear-gradient(to right, #0078D7 0%, #0078D7 ${isMuted ? 0 : volume}%, #4a5568 ${isMuted ? 0 : volume}%, #4a5568 100%)`,
                 }}
               />
               <div className="text-xs text-gray-400 mt-1 text-right">{isMuted ? 0 : volume}%</div>
@@ -169,6 +191,18 @@ export const VolumePanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose })
 // Calendar Panel Component
 export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose }) => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [currentTime, setCurrentTime] = React.useState(new Date());
+
+  // Update time every second
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -182,7 +216,9 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
 
   const { firstDay, daysInMonth } = getDaysInMonth(currentDate);
   const today = new Date();
-  const isCurrentMonth = currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear();
+  const isCurrentMonth =
+    currentDate.getMonth() === today.getMonth() &&
+    currentDate.getFullYear() === today.getFullYear();
 
   const previousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
@@ -192,8 +228,21 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <div
@@ -203,13 +252,24 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
       <div className="p-4 bg-win-dark/95 backdrop-blur">
         {/* Date/Time Display */}
         <div className="mb-4 pb-3 border-b border-gray-700">
-          <div className="text-2xl font-light">{currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-          <div className="text-sm text-gray-400 mt-1">{currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div className="text-2xl font-light">
+            {currentTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          </div>
+          <div className="text-sm text-gray-400 mt-1">
+            {currentTime.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </div>
         </div>
 
         {/* Calendar Navigation */}
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-medium">{monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}</div>
+          <div className="text-sm font-medium">
+            {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+          </div>
           <div className="flex gap-1">
             <button
               onClick={previousMonth}
@@ -217,10 +277,7 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
             >
               <ChevronLeft size={16} />
             </button>
-            <button
-              onClick={nextMonth}
-              className="p-1 hover:bg-white/10 rounded transition-colors"
-            >
+            <button onClick={nextMonth} className="p-1 hover:bg-white/10 rounded transition-colors">
               <ChevronRight size={16} />
             </button>
           </div>
@@ -229,7 +286,7 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-1 mb-4">
           {/* Day headers */}
-          {dayNames.map(day => (
+          {dayNames.map((day) => (
             <div key={day} className="text-xs text-center text-gray-400 py-1">
               {day}
             </div>
@@ -248,10 +305,7 @@ export const CalendarPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onClose 
               <div
                 key={day}
                 className={`aspect-square flex items-center justify-center text-xs rounded cursor-pointer transition-colors
-                  ${isToday
-                    ? 'bg-win-blue text-white font-bold'
-                    : 'hover:bg-white/10'
-                  }`}
+                  ${isToday ? "bg-win-blue text-white font-bold" : "hover:bg-white/10"}`}
               >
                 {day}
               </div>
@@ -277,17 +331,17 @@ export const NotificationPanel: React.FC<SystemTrayPanelProps> = ({ isOpen, onCl
   const notifications = [
     {
       icon: Mail,
-      title: 'New Message',
-      message: 'Check out my portfolio!',
-      time: '2 min ago',
-      color: 'text-blue-400'
+      title: "New Message",
+      message: "Check out my portfolio!",
+      time: "2 min ago",
+      color: "text-blue-400",
     },
     {
       icon: MessageSquare,
-      title: 'System',
-      message: 'Welcome to my Windows 10 themed portfolio',
-      time: '5 min ago',
-      color: 'text-green-400'
+      title: "System",
+      message: "Welcome to my Windows 10 themed portfolio",
+      time: "5 min ago",
+      color: "text-green-400",
     },
   ];
 

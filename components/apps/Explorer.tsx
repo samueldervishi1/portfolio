@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { PROJECTS } from "../../constants";
+import { PROJECTS, GITHUB_REPOS } from "../../constants";
+import { useGitHubRepoData, formatGitHubDate, formatRepoSize } from "../../hooks/useGitHubRepoData";
 import {
   Folder,
   ArrowLeft,
@@ -19,37 +20,87 @@ import {
 const Explorer: React.FC = () => {
   const [view, setView] = useState<"projects" | "disk" | "desktop" | "downloads">("projects");
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const { repoData, loading, error } = useGitHubRepoData(GITHUB_REPOS);
+
+  // Helper function to get date (from GitHub API or fallback)
+  const getProjectDate = (project: any) => {
+    const repoName = project.id === "social-media-web" ? "social-media-web" : project.id;
+    if (repoData[repoName]?.updated_at) {
+      return formatGitHubDate(repoData[repoName].updated_at);
+    }
+    return project.date; // Fallback to hardcoded date
+  };
+
+  // Helper function to get size (from GitHub API or fallback)
+  const getProjectSize = (project: any) => {
+    const repoName = project.id === "social-media-web" ? "social-media-web" : project.id;
+    if (repoData[repoName]?.size) {
+      return formatRepoSize(repoData[repoName].size);
+    }
+    return project.size; // Fallback to hardcoded size
+  };
+
+  // Sort projects by date (most recent first)
+  const sortedProjects = [...PROJECTS].sort((a, b) => {
+    const dateA = getProjectDate(a);
+    const dateB = getProjectDate(b);
+
+    // Parse dates in MM/DD/YYYY format
+    const parseDate = (dateStr: string) => {
+      const [month, day, year] = dateStr.split("/").map(Number);
+      return new Date(year, month - 1, day).getTime();
+    };
+
+    return parseDate(dateB) - parseDate(dateA); // Descending order
+  });
 
   const desktopFiles = [
-    { name: 'About Me.txt', type: 'Text Document', size: '2 KB', icon: FileCode, description: 'Professional profile and skills overview' },
-    { name: 'My Projects', type: 'Folder', size: '4 items', icon: Folder, description: 'Portfolio of development projects' },
-    { name: 'Resume.pdf', type: 'PDF Document', size: '44 KB', icon: FileCode, description: 'Professional resume and experience' },
+    {
+      name: "About Me.txt",
+      type: "Text Document",
+      size: "2 KB",
+      icon: FileCode,
+      description: "Professional profile and skills overview",
+    },
+    {
+      name: "My Projects",
+      type: "Folder",
+      size: "4 items",
+      icon: Folder,
+      description: "Portfolio of development projects",
+    },
+    {
+      name: "Resume.pdf",
+      type: "PDF Document",
+      size: "44 KB",
+      icon: FileCode,
+      description: "Professional resume and experience",
+    },
   ];
 
   const downloadFiles = [
-    { name: 'europa-fastagent-v1.2.zip', type: 'Compressed Folder', size: '3.4 MB', date: '11/15/2025' },
-    { name: 'sage-cli-installer.exe', type: 'Application', size: '1.8 MB', date: '10/20/2025' },
-    { name: 'project-documentation.pdf', type: 'PDF Document', size: '856 KB', date: '09/12/2025' },
-    { name: 'meeting-notes-oct.docx', type: 'Word Document', size: '124 KB', date: '10/05/2025' },
-    { name: 'profile-picture.jpg', type: 'JPEG Image', size: '2.1 MB', date: '08/22/2025' },
+    {
+      name: "europa-fastagent-v1.2.zip",
+      type: "Compressed Folder",
+      size: "3.4 MB",
+      date: "11/15/2025",
+    },
+    { name: "sage-cli-installer.exe", type: "Application", size: "1.8 MB", date: "10/20/2025" },
+    { name: "project-documentation.pdf", type: "PDF Document", size: "856 KB", date: "09/12/2025" },
+    { name: "meeting-notes-oct.docx", type: "Word Document", size: "124 KB", date: "10/05/2025" },
+    { name: "profile-picture.jpg", type: "JPEG Image", size: "2.1 MB", date: "08/22/2025" },
   ];
 
   return (
     <div className="flex flex-col h-full bg-white text-sm select-none">
       {/* Ribbon Tabs */}
       <div className="flex bg-white border-b border-gray-200 pt-1 px-2 gap-4 text-xs">
-        <div className="text-white bg-[#0078D7] px-4 py-1 rounded-t-sm">
-          File
-        </div>
+        <div className="text-white bg-[#0078D7] px-4 py-1 rounded-t-sm">File</div>
         <div className="px-4 py-1 text-gray-600 hover:bg-gray-100 cursor-default border-b-2 border-[#0078D7]">
           Home
         </div>
-        <div className="px-4 py-1 text-gray-600 hover:bg-gray-100 cursor-default">
-          Share
-        </div>
-        <div className="px-4 py-1 text-gray-600 hover:bg-gray-100 cursor-default">
-          View
-        </div>
+        <div className="px-4 py-1 text-gray-600 hover:bg-gray-100 cursor-default">Share</div>
+        <div className="px-4 py-1 text-gray-600 hover:bg-gray-100 cursor-default">View</div>
       </div>
 
       {/* Ribbon Toolbar (Simplified) */}
@@ -75,10 +126,7 @@ const Explorer: React.FC = () => {
       <div className="flex items-center gap-2 p-2 border-b border-gray-200 bg-white">
         <div className="flex gap-1 text-gray-400">
           <ArrowLeft size={14} className="hover:text-blue-500 cursor-pointer" />
-          <ArrowRight
-            size={14}
-            className="hover:text-blue-500 cursor-pointer"
-          />
+          <ArrowRight size={14} className="hover:text-blue-500 cursor-pointer" />
           <ArrowUp size={14} className="hover:text-blue-500 cursor-pointer" />
         </div>
         <div className="flex-1 border border-gray-300 flex items-center px-2 py-1 gap-2 text-xs hover:border-blue-400">
@@ -158,21 +206,17 @@ const Explorer: React.FC = () => {
             <>
               {/* Headers */}
               <div className="flex text-xs text-gray-600 border-b border-gray-200 px-2 py-1">
-                <div className="flex-1 pl-2 border-r border-gray-100 hover:bg-gray-50">
-                  Name
-                </div>
+                <div className="flex-1 pl-2 border-r border-gray-100 hover:bg-gray-50">Name</div>
                 <div className="w-32 pl-2 border-r border-gray-100 hover:bg-gray-50">
                   Date modified
                 </div>
-                <div className="w-24 pl-2 border-r border-gray-100 hover:bg-gray-50">
-                  Type
-                </div>
+                <div className="w-24 pl-2 border-r border-gray-100 hover:bg-gray-50">Type</div>
                 <div className="w-20 pl-2 hover:bg-gray-50">Size</div>
               </div>
 
               {/* Files */}
               <div className="flex-1 overflow-y-auto p-1 bg-white">
-                {PROJECTS.map((project) => (
+                {sortedProjects.map((project) => (
                   <div
                     key={project.id}
                     className={`flex items-center px-2 py-1 hover:bg-blue-100/40 hover:border border ${
@@ -182,26 +226,16 @@ const Explorer: React.FC = () => {
                     } hover:border-blue-200 cursor-default group`}
                     onClick={() => setSelectedProject(project)}
                     onDoubleClick={() =>
-                      project.githubUrl &&
-                      window.open(project.githubUrl, "_blank")
+                      project.githubUrl && window.open(project.githubUrl, "_blank")
                     }
                   >
                     <div className="flex-1 flex items-center gap-2 min-w-0">
-                      <Folder
-                        className="text-yellow-500 fill-yellow-500"
-                        size={18}
-                      />
+                      <Folder className="text-yellow-500 fill-yellow-500" size={18} />
                       <span className="text-xs truncate">{project.title}</span>
                     </div>
-                    <div className="w-32 text-xs text-gray-500">
-                      {project.date}
-                    </div>
-                    <div className="w-24 text-xs text-gray-500">
-                      {project.type}
-                    </div>
-                    <div className="w-20 text-xs text-gray-500">
-                      {project.size}
-                    </div>
+                    <div className="w-32 text-xs text-gray-500">{getProjectDate(project)}</div>
+                    <div className="w-24 text-xs text-gray-500">{project.type}</div>
+                    <div className="w-20 text-xs text-gray-500">{getProjectSize(project)}</div>
                   </div>
                 ))}
 
@@ -209,37 +243,26 @@ const Explorer: React.FC = () => {
                 {selectedProject && (
                   <div className="m-4 p-4 border border-blue-300 bg-blue-50/50 rounded">
                     <div className="flex items-start gap-3 mb-3">
-                      <Folder
-                        className="text-yellow-500 fill-yellow-500"
-                        size={32}
-                      />
+                      <Folder className="text-yellow-500 fill-yellow-500" size={32} />
                       <div>
                         <h3 className="text-sm font-bold text-gray-800 mb-1">
                           {selectedProject.title}
                         </h3>
-                        <p className="text-xs text-gray-600 mb-2">
-                          {selectedProject.description}
-                        </p>
+                        <p className="text-xs text-gray-600 mb-2">{selectedProject.description}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div>
                         <span className="text-gray-500">Type:</span>{" "}
-                        <span className="font-medium">
-                          {selectedProject.type}
-                        </span>
+                        <span className="font-medium">{selectedProject.type}</span>
                       </div>
                       <div>
                         <span className="text-gray-500">Size:</span>{" "}
-                        <span className="font-medium">
-                          {selectedProject.size}
-                        </span>
+                        <span className="font-medium">{getProjectSize(selectedProject)}</span>
                       </div>
                       <div>
                         <span className="text-gray-500">Modified:</span>{" "}
-                        <span className="font-medium">
-                          {selectedProject.date}
-                        </span>
+                        <span className="font-medium">{getProjectDate(selectedProject)}</span>
                       </div>
                       <div>
                         <span className="text-gray-500">Tech:</span>{" "}
@@ -250,9 +273,7 @@ const Explorer: React.FC = () => {
                     </div>
                     {selectedProject.githubUrl && (
                       <button
-                        onClick={() =>
-                          window.open(selectedProject.githubUrl, "_blank")
-                        }
+                        onClick={() => window.open(selectedProject.githubUrl, "_blank")}
                         className="mt-3 px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded"
                       >
                         Open on GitHub
@@ -267,7 +288,7 @@ const Explorer: React.FC = () => {
 
               {/* Status Bar */}
               <div className="bg-white border-t border-gray-200 px-2 py-1 text-xs text-gray-500 flex gap-4">
-                <span>{PROJECTS.length} items</span>
+                <span>{sortedProjects.length} items</span>
                 {selectedProject && <span>1 item selected</span>}
               </div>
             </>
@@ -306,7 +327,9 @@ const Explorer: React.FC = () => {
             <>
               <div className="flex text-xs text-gray-600 border-b border-gray-200 px-2 py-1">
                 <div className="flex-1 pl-2 border-r border-gray-100 hover:bg-gray-50">Name</div>
-                <div className="w-32 pl-2 border-r border-gray-100 hover:bg-gray-50">Date modified</div>
+                <div className="w-32 pl-2 border-r border-gray-100 hover:bg-gray-50">
+                  Date modified
+                </div>
                 <div className="w-24 pl-2 border-r border-gray-100 hover:bg-gray-50">Type</div>
                 <div className="w-20 pl-2 hover:bg-gray-50">Size</div>
               </div>
@@ -340,9 +363,7 @@ const Explorer: React.FC = () => {
                 <div className="flex items-center gap-4 mb-6">
                   <HardDrive size={48} className="text-gray-600" />
                   <div>
-                    <h2 className="text-xl font-bold text-gray-800">
-                      Local Disk (C:)
-                    </h2>
+                    <h2 className="text-xl font-bold text-gray-800">Local Disk (C:)</h2>
                     <p className="text-sm text-gray-500">System Drive</p>
                   </div>
                 </div>
@@ -354,10 +375,7 @@ const Explorer: React.FC = () => {
                     <span>512 GB total</span>
                   </div>
                   <div className="h-6 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-blue-500"
-                      style={{ width: "63%" }}
-                    ></div>
+                    <div className="h-full bg-blue-500" style={{ width: "63%" }}></div>
                   </div>
                   <p className="text-xs text-gray-500 mt-1">188 GB free</p>
                 </div>
@@ -390,10 +408,7 @@ const Explorer: React.FC = () => {
                 {/* Fun Stats */}
                 <div className="mt-6 grid grid-cols-3 gap-4">
                   <div className="bg-blue-50 border border-blue-200 rounded p-3 text-center">
-                    <Database
-                      size={24}
-                      className="mx-auto text-blue-500 mb-2"
-                    />
+                    <Database size={24} className="mx-auto text-blue-500 mb-2" />
                     <div className="text-lg font-bold text-gray-800">2,847</div>
                     <div className="text-xs text-gray-600">Files</div>
                   </div>

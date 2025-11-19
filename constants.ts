@@ -1,5 +1,12 @@
 import { Project, Skill, NavItem } from "./types";
 
+export const GITHUB_REPOS = [
+  { owner: "samueldervishii", name: "europa-fastagent" },
+  { owner: "samueldervishii", name: "sage-cli" },
+  { owner: "samueldervishii", name: "llm-token-toolkit" },
+  { owner: "samueldervishii", name: "social-media-web" },
+];
+
 export const PROJECTS: Project[] = [
   {
     id: "europa-fastagent",
@@ -10,24 +17,22 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/samueldervishii/europa-fastagent",
     date: "11/15/2025",
     size: "245 KB",
-    type: "Java Project",
+    type: "CLI",
   },
   {
     id: "sage-cli",
     title: "sage-cli",
-    description:
-      "Command Line Interface AI assistant for developer productivity.",
+    description: "Command Line Interface AI assistant for developer productivity.",
     tech: ["Java", "GraalVM", "CLI", "Process API"],
     githubUrl: "https://github.com/samueldervishii/sage-cli",
     date: "10/02/2025",
     size: "1.2 MB",
-    type: "CLI Tool",
+    type: "Web App",
   },
   {
     id: "llm-token-toolkit",
     title: "llm-token-toolkit",
-    description:
-      "High-performance tokenization utility for preparing LLM datasets.",
+    description: "High-performance tokenization utility for preparing LLM datasets.",
     tech: ["Python", "C++", "NLP", "HuggingFace"],
     githubUrl: "https://github.com/samueldervishii/llm-token-toolkit",
     date: "09/20/2025",
@@ -37,8 +42,7 @@ export const PROJECTS: Project[] = [
   {
     id: "social-media-web",
     title: "Social Platform",
-    description:
-      "Scalable social media architecture with real-time feed generation.",
+    description: "Scalable social media architecture with real-time feed generation.",
     tech: ["Java", "Spring Cloud", "Kafka", "Neo4j"],
     githubUrl: "https://github.com/samueldervishii/social-media-web",
     date: "08/14/2025",

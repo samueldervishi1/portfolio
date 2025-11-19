@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Mail,
-  Linkedin,
-  Globe,
-  MapPin,
-  Award,
-  Briefcase,
-  GraduationCap,
-} from "lucide-react";
+import { Mail, Linkedin, Globe, MapPin, Award, Briefcase, GraduationCap } from "lucide-react";
 
 const PDFViewer: React.FC = () => {
   return (
@@ -26,10 +18,7 @@ const PDFViewer: React.FC = () => {
               rel="noopener noreferrer"
               className="flex items-start gap-3 text-sm text-gray-700 hover:text-gray-900"
             >
-              <Linkedin
-                size={14}
-                className="text-gray-500 mt-0.5 flex-shrink-0"
-              />
+              <Linkedin size={14} className="text-gray-500 mt-0.5 flex-shrink-0" />
               <span className="break-all">samueldervishi</span>
             </a>
             <a
@@ -50,16 +39,14 @@ const PDFViewer: React.FC = () => {
             Top Skills
           </h3>
           <div className="flex flex-wrap gap-1.5">
-            {["Azure App Service", "Scaling Web Apps", "Deployment Slots"].map(
-              (skill) => (
-                <span
-                  key={skill}
-                  className="px-2 py-0.5 text-xs text-gray-700 bg-white border border-gray-200 rounded"
-                >
-                  {skill}
-                </span>
-              )
-            )}
+            {["Azure App Service", "Scaling Web Apps", "Deployment Slots"].map((skill) => (
+              <span
+                key={skill}
+                className="px-2 py-0.5 text-xs text-gray-700 bg-white border border-gray-200 rounded"
+              >
+                {skill}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -103,12 +90,8 @@ const PDFViewer: React.FC = () => {
                 SD
               </div>
               <div className="flex-1">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">
-                  Samuel Dervishi
-                </h1>
-                <p className="text-xl text-gray-600 mb-3">
-                  Software Engineer @ Tegeria
-                </p>
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">Samuel Dervishi</h1>
+                <p className="text-xl text-gray-600 mb-3">Software Engineer @ Tegeria</p>
                 <div className="flex items-center gap-2 text-sm text-gray-500">
                   <MapPin size={16} />
                   <span>Tirana, Albania</span>
@@ -123,16 +106,14 @@ const PDFViewer: React.FC = () => {
               Summary
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Java Developer at Tegeria specializing in backend architecture and
-              scalable solutions. I design and implement systems that solve
-              complex technical challenges through clean, maintainable code. My
-              approach combines analytical thinking with practical
-              problem-solving, focusing on fundamental principles to deliver
-              robust applications in fast-paced environments.
+              Java Developer at Tegeria specializing in backend architecture and scalable solutions.
+              I design and implement systems that solve complex technical challenges through clean,
+              maintainable code. My approach combines analytical thinking with practical
+              problem-solving, focusing on fundamental principles to deliver robust applications in
+              fast-paced environments.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Always open to connecting with fellow developers and technical
-              professionals.
+              Always open to connecting with fellow developers and technical professionals.
             </p>
           </div>
 
@@ -148,9 +129,7 @@ const PDFViewer: React.FC = () => {
               <div className="relative pl-6 border-l-2 border-gray-200">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-900 border-2 border-white"></div>
                 <div className="mb-1">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Software Engineer
-                  </h3>
+                  <h3 className="text-lg font-bold text-gray-900">Software Engineer</h3>
                   <div className="text-sm text-gray-600">Tegeria</div>
                   <div className="text-xs text-gray-500 mt-1">
                     December 2023 - Present (2 years) • Tirana, Albania
@@ -162,9 +141,7 @@ const PDFViewer: React.FC = () => {
               <div className="relative pl-6 border-l-2 border-gray-200">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-gray-300"></div>
                 <div className="mb-1">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Software Engineer Intern
-                  </h3>
+                  <h3 className="text-lg font-bold text-gray-900">Software Engineer Intern</h3>
                   <div className="text-sm text-gray-600">Taleas</div>
                   <div className="text-xs text-gray-500 mt-1">
                     July 2023 - October 2023 (4 months) • Tirana, Albania
@@ -176,9 +153,7 @@ const PDFViewer: React.FC = () => {
               <div className="relative pl-6 border-l-2 border-gray-200">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-gray-300"></div>
                 <div className="mb-1">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Software Engineer Intern
-                  </h3>
+                  <h3 className="text-lg font-bold text-gray-900">Software Engineer Intern</h3>
                   <div className="text-sm text-gray-600">Coders SHPK</div>
                   <div className="text-xs text-gray-500 mt-1">
                     April 2023 - May 2023 (2 months) • Tirana, Albania
@@ -190,12 +165,8 @@ const PDFViewer: React.FC = () => {
               <div className="relative pl-6">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-gray-300"></div>
                 <div className="mb-1">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Sales Representative
-                  </h3>
-                  <div className="text-sm text-gray-600">
-                    Yellow Pages / Pages Jaunes – Canada
-                  </div>
+                  <h3 className="text-lg font-bold text-gray-900">Sales Representative</h3>
+                  <div className="text-sm text-gray-600">Yellow Pages / Pages Jaunes – Canada</div>
                   <div className="text-xs text-gray-500 mt-1">
                     June 2022 - September 2022 (4 months) • Tirana, Albania
                   </div>
@@ -212,15 +183,9 @@ const PDFViewer: React.FC = () => {
             </h2>
             <div className="pl-6 border-l-2 border-gray-200 relative">
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-900 border-2 border-white"></div>
-              <h3 className="text-lg font-bold text-gray-900">
-                University of Tirana
-              </h3>
-              <div className="text-sm text-gray-600">
-                Bachelor's degree, Business Informatics
-              </div>
-              <div className="text-xs text-gray-500 mt-1">
-                October 2021 - October 2024
-              </div>
+              <h3 className="text-lg font-bold text-gray-900">University of Tirana</h3>
+              <div className="text-sm text-gray-600">Bachelor's degree, Business Informatics</div>
+              <div className="text-xs text-gray-500 mt-1">October 2021 - October 2024</div>
             </div>
           </div>
         </div>

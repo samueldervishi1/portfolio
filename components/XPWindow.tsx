@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { X, Minus, Maximize2, Minimize2 } from 'lucide-react';
-import { WindowState } from '../types';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import { X, Minus, Maximize2, Minimize2 } from "lucide-react";
+import { WindowState } from "../types";
+import { motion } from "framer-motion";
 
 interface XPWindowProps {
   window: WindowState;
@@ -20,7 +20,7 @@ const XPWindow: React.FC<XPWindowProps> = ({
   onMaximize,
   onFocus,
   onMove,
-  onResize
+  onResize,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -30,13 +30,13 @@ const XPWindow: React.FC<XPWindowProps> = ({
     if (window.isMaximized) return;
     // Only drag if clicking title bar
     const target = e.target as HTMLElement;
-    if (target.closest('.window-controls')) return;
-    
+    if (target.closest(".window-controls")) return;
+
     onFocus(window.id);
     setIsDragging(true);
     setDragOffset({
       x: e.clientX - window.position.x,
-      y: e.clientY - window.position.y
+      y: e.clientY - window.position.y,
     });
   };
 
@@ -52,13 +52,13 @@ const XPWindow: React.FC<XPWindowProps> = ({
     };
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, dragOffset, window.id, onMove]);
 
@@ -74,11 +74,11 @@ const XPWindow: React.FC<XPWindowProps> = ({
       transition={{ duration: 0.15 }}
       ref={windowRef}
       style={{
-        position: 'absolute',
+        position: "absolute",
         left: window.isMaximized ? 0 : window.position.x,
         top: window.isMaximized ? 0 : window.position.y,
-        width: window.isMaximized ? '100%' : window.size.width,
-        height: window.isMaximized ? 'calc(100% - 40px)' : window.size.height,
+        width: window.isMaximized ? "100%" : window.size.width,
+        height: window.isMaximized ? "calc(100% - 40px)" : window.size.height,
         zIndex: window.zIndex,
       }}
       className="flex flex-col bg-xp-beige rounded-t-lg xp-shadow"
@@ -87,9 +87,9 @@ const XPWindow: React.FC<XPWindowProps> = ({
       {/* Title Bar */}
       <div
         className={`h-8 flex justify-between items-center px-2 select-none ${
-          window.zIndex >= 10 
-            ? 'bg-gradient-to-r from-xp-title-start via-xp-title-mid to-xp-title-end' 
-            : 'bg-[#7697E7]'
+          window.zIndex >= 10
+            ? "bg-gradient-to-r from-xp-title-start via-xp-title-mid to-xp-title-end"
+            : "bg-[#7697E7]"
         } rounded-t-lg cursor-default`}
         onMouseDown={handleMouseDown}
         onDoubleClick={() => onMaximize(window.id)}
@@ -101,19 +101,32 @@ const XPWindow: React.FC<XPWindowProps> = ({
 
         <div className="window-controls flex items-center gap-1">
           <button
-            onClick={(e) => { e.stopPropagation(); onMinimize(window.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onMinimize(window.id);
+            }}
             className="w-5 h-5 flex items-center justify-center bg-xp-blue-dark border border-white rounded hover:bg-blue-400 active:bg-blue-600 shadow-inner text-white"
           >
             <Minus size={12} strokeWidth={3} />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); onMaximize(window.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onMaximize(window.id);
+            }}
             className="w-5 h-5 flex items-center justify-center bg-xp-blue-dark border border-white rounded hover:bg-blue-400 active:bg-blue-600 shadow-inner text-white"
           >
-            {window.isMaximized ? <Minimize2 size={12} strokeWidth={3} /> : <Maximize2 size={12} strokeWidth={3} />}
+            {window.isMaximized ? (
+              <Minimize2 size={12} strokeWidth={3} />
+            ) : (
+              <Maximize2 size={12} strokeWidth={3} />
+            )}
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); onClose(window.id); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose(window.id);
+            }}
             className="w-5 h-5 flex items-center justify-center bg-xp-red border border-white rounded hover:bg-red-400 active:bg-red-600 shadow-inner text-white"
           >
             <X size={14} strokeWidth={3} />
@@ -131,21 +144,21 @@ const XPWindow: React.FC<XPWindowProps> = ({
 
       {/* Content Area */}
       <div className="flex-1 overflow-auto bg-white border-l-4 border-r-4 border-b-4 border-xp-beige p-1 relative">
-         {window.content}
+        {window.content}
       </div>
-      
+
       {/* Resizer (simple visual, functionality simplified for MVP) */}
       {!window.isMaximized && (
-        <div 
+        <div
           className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
           onMouseDown={(e) => {
-             e.stopPropagation();
-             // Simple resize implementation could go here
+            e.stopPropagation();
+            // Simple resize implementation could go here
           }}
         >
-           <svg width="100%" height="100%" viewBox="0 0 12 12">
-             <path d="M8 10 L10 12 M5 10 L10 5 M2 10 L10 2" stroke="#888" strokeWidth="1" />
-           </svg>
+          <svg width="100%" height="100%" viewBox="0 0 12 12">
+            <path d="M8 10 L10 12 M5 10 L10 5 M2 10 L10 2" stroke="#888" strokeWidth="1" />
+          </svg>
         </div>
       )}
     </motion.div>

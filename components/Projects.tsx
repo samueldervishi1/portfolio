@@ -1,7 +1,7 @@
-import React from 'react';
-import { PROJECTS } from '../constants';
-import { Folder, Github, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { PROJECTS } from "../constants";
+import { Folder, Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Projects: React.FC = () => {
   return (
@@ -30,12 +30,22 @@ const Projects: React.FC = () => {
                 </div>
                 <div className="flex gap-4 text-slate-400">
                   {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-accent transition-colors"
+                    >
                       <Github size={20} />
                     </a>
                   )}
                   {project.demoUrl && (
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-accent transition-colors"
+                    >
                       <ExternalLink size={20} />
                     </a>
                   )}
@@ -51,7 +61,7 @@ const Projects: React.FC = () => {
               </p>
 
               <ul className="flex flex-wrap gap-3 mt-auto text-xs font-mono text-slate-500">
-                {project.tech.map(t => (
+                {project.tech.map((t) => (
                   <li key={t}>{t}</li>
                 ))}
               </ul>

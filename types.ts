@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 export interface WindowState {
   id: string;
@@ -11,7 +11,7 @@ export interface WindowState {
   position: { x: number; y: number };
   size: { width: number; height: number };
   content: React.ReactNode;
-  type: 'notepad' | 'explorer' | 'word' | 'pdf' | 'browser';
+  type: "notepad" | "explorer" | "word" | "pdf" | "browser";
 }
 
 export interface DesktopIconProps {
@@ -38,7 +38,7 @@ export interface Project {
 export interface Skill {
   name: string;
   level: number; // 0-100
-  category: 'Backend' | 'Frontend' | 'Tools' | 'Cloud' | 'Database' | 'Language' | 'Framework';
+  category: "Backend" | "Frontend" | "Tools" | "Cloud" | "Database" | "Language" | "Framework";
   icon?: LucideIcon;
 }
 
